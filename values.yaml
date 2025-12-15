@@ -3,6 +3,9 @@ nameOverride: ""
 # -- The full resource name override
 fullnameOverride: ""
 
+# -- Number of replicas in the StatefulSet
+replicas: 1
+
 image:
   # -- The container image to run
   repository: ghcr.io/pocket-id/pocket-id
@@ -97,16 +100,16 @@ resources:
   #   memory: 128Mi
 
 livenessProbe:
-  initialDelaySeconds: 60
+  initialDelaySeconds: 6
   httpGet:
     # -- Healthcheck endpoint
-    path: /health
+    path: /healthz
     port: http
 readinessProbe:
-  initialDelaySeconds: 60
+  initialDelaySeconds: 6
   httpGet:
     # -- Healthcheck endpoint
-    path: /health
+    path: /healthz
     port: http
 
 persistence:
